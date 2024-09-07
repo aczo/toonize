@@ -1,6 +1,12 @@
 ## Turn your image or video into a cartoon
 
 A tool for converting images and videos into cartoons. Tested on python 3.7.
+
+## Results
+<div>
+<img src="/media/toonize.webp" width="640"/>
+</div>
+
 This code is based on WhiteBox cartoonization tool from https://github.com/SystemErrorWang/White-box-Cartoonization/. It uses pretrained models from https://github.com/experience-ml/cartoonize.
 
 ## Install
