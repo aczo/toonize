@@ -2,9 +2,9 @@
 
 A tool for converting images and videos into cartoons. Tested on python 3.7.
 
-**Results
+**Results**:
 <div>
-<img src="/media/toonize.webp" width="640"/>
+<img src="/media/toonize.webp" width="480"/>
 </div>
 
 This code is based on WhiteBox cartoonization tool from https://github.com/SystemErrorWang/White-box-Cartoonization/.
