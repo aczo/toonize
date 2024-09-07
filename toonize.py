@@ -47,7 +47,7 @@ def process_images(pattern):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python cartoonize.py '<path/pattern>'")
+        print("Usage: python toonize.py '<path/pattern>'")
     else:
         pattern = sys.argv[1]
         process_images(pattern)
