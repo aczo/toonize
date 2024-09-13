@@ -9,6 +9,7 @@ import time
 import subprocess
 import sys
 
+from tqdm import tqdm
 import cv2
 import numpy as np
 import skvideo.io
@@ -89,27 +90,31 @@ class WB_Cartoonize:
     def process_video(self, fname, frame_rate):
         ## Capture video using opencv
         cap = cv2.VideoCapture(fname)
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))  # get total number of frames
 
         target_size = (int(cap.get(3)),int(cap.get(4)))
         output_fname = os.path.abspath('{}/{}-{}.mp4'.format(fname.replace(os.path.basename(fname), ''),os.path.basename(fname).split('.')[0],str(uuid.uuid4())[:7]))
 
         out = skvideo.io.FFmpegWriter(output_fname, inputdict={'-r':frame_rate}, outputdict={'-r':frame_rate})
 
+        pbar = tqdm(total=total_frames)
         while True:
             ret, frame = cap.read()
             
             if ret:
-                
+                  
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                
+                   
                 frame = self.infer(frame)
-                
+                   
                 frame = cv2.resize(frame, target_size)
-                
+                  
                 out.writeFrame(frame)
-                
+                pbar.update(1)  # update the progress bar
+                    
             else:
                 break
+        pbar.close()
         cap.release()
         out.close()
         
